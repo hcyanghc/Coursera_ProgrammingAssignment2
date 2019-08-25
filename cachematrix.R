@@ -21,16 +21,14 @@ makeCacheMatrix <- function(x = matrix()) {
 ## If so, it gets the mean from the cache and skips the computation. 
 ## If not, it calculates the inversion of the data and sets the value of the mean in the cache via the setinvr function.
 
-
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-  inv <- x$getinv()
-  if(!is.null(inv)) {
-    message("getting cached data")
-    return(inv)
+cacheSolve <- function(mtx, ...) {
+  inverse <- mtx$getinv()
+  if(!is.null(inverse)) {
+    message("Getting cached data...")
+    return(inverse)
   }
-  data <- x$get()
-  inv <- solve(data, ...)
-  x$setinv(inv)
-  inv
+  data <- mtx$get()
+  invserse <- solve(data, ...)
+  mtx$setinv(inverse)
+  return(inverse)
 }
